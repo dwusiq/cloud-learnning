@@ -1,0 +1,64 @@
+plugins {
+    id 'maven';
+    id 'java';
+    id 'eclipse';
+    id 'idea';
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+    id "org.springframework.boot" version "2.1.7.RELEASE"
+}
+
+
+repositories {
+    // 本地maven仓库
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+
+group 'com.wusiq'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR6"
+    }
+}
+
+
+
+List springCloud = [
+        "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server"
+]
+def log4j_version="2.13.3"
+List log4j = [
+        "org.apache.logging.log4j:log4j-api:$log4j_version",
+        "org.apache.logging.log4j:log4j-core:$log4j_version",
+        "org.apache.logging.log4j:log4j-slf4j-impl:$log4j_version",
+        "org.apache.logging.log4j:log4j-web:$log4j_version"
+]
+
+
+
+List springboot = [
+        "org.springframework.boot:spring-boot-starter-web",
+        "org.springframework.boot:spring-boot-starter-test"
+]
+
+dependencies {
+    implementation springCloud,log4j,springboot
+}
+
+
+configurations {
+    all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    all*.exclude group: 'log4j', module: 'log4j'
+    all*.exclude group: 'org.ow2.asm', module: 'asm'
+    all*.exclude group: 'jline', module: 'jline'
+    all*.exclude group: 'com.google.protobuf', module: 'protobuf-java'
+}

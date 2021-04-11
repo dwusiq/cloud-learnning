@@ -1,0 +1,18 @@
+#server config
+server:
+  port: 5014
+
+spring:
+  application:
+    name: hello-client
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:5013/eureka/
+
+#log config
+logging:
+  config: classpath:log4j2.xml
+  level:
+    com.wusiq.cloud: info

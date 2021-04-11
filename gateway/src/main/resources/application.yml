@@ -1,0 +1,19 @@
+#server config
+server:
+  port: 5012
+
+spring:
+  application:
+    name: gateway
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:5013/eureka/
+
+#log config
+logging:
+  config: classpath:log4j2.xml
+  level:
+    com.wusiq.cloud: info

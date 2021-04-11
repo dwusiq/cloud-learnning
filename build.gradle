@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.wusiq'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+
+allprojects {
+    repositories {
+        // 本地maven仓库
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        mavenCentral()
+    }
+}
+
+
+
+
+
